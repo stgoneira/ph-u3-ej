@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cocteles',
@@ -12,9 +13,16 @@ import { IonicModule } from '@ionic/angular';
 })
 export class CoctelesPage implements OnInit {
 
-  constructor() { }
+  categoria:string = ""
 
-  ngOnInit() {
+  constructor(
+    private route: ActivatedRoute
+  ) { 
+    this.route.params.subscribe(params => {
+      this.categoria = params['categoria']
+    })
   }
+
+  ngOnInit() {}
 
 }
