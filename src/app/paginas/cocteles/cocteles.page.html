@@ -1,9 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>cocteles</ion-title>
+    <ion-title>{{categoria}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  {{categoria}}
+  <ion-list>
+    <ion-item *ngFor="let c of cocteles">
+      <ion-img [src]="c.imagen" />
+      <ion-label>{{c.nombre}}</ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="abrirModalCategoriasFavoritos(c)">
+          <ion-icon name="heart-outline" />
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>  
+
+  <ion-modal [isOpen]="modalCategoriasFavoritosAbierto">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Seleccione la lista de favoritos</ion-title>
+          <ion-buttons slot="end">
+            <ion-button>Cancelar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item 
+            *ngFor="let cf of categoriasFavoritos"
+            (click)="guardarCoctelEnCategoria(cf)"
+            >
+            <ion-label>{{cf}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
