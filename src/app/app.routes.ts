@@ -3,15 +3,15 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [  
   {
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'categorias',
     pathMatch: 'full',
+  },  
+  {
+    path: 'categorias',
+    loadComponent: () => import('./paginas/categorias/categorias.page').then( m => m.CategoriasPage)
   },
   {
-    path: 'inicio',
-    loadComponent: () => import('./paginas/inicio/inicio.page').then( m => m.InicioPage)
-  },
-  {
-    path: 'form',
-    loadComponent: () => import('./paginas/form/form.page').then( m => m.FormPage)
+    path: 'cocteles',
+    loadComponent: () => import('./paginas/cocteles/cocteles.page').then( m => m.CoctelesPage)
   },
 ];
